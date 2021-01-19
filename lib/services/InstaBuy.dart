@@ -1,4 +1,4 @@
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class InstaBuyService {
   final API = 'https://api.instabuy.com.br/apiv3/';
@@ -6,7 +6,7 @@ class InstaBuyService {
   Future<dynamic> getLayout() async {
     var queryParams = {'subdomain': 'bigboxdelivery'};
     var url = API + 'layout' + '?' + Uri(queryParameters: queryParams).query;
-    var response = await http.get(url);
-    print(response.body);
+    var response = await Dio().get(url);
+    return response.data;
   }
 }

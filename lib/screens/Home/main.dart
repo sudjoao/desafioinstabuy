@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:DesafioInstabuy/components/BannerCard/main.dart';
 import 'package:DesafioInstabuy/services/InstaBuy.dart';
 import 'package:flutter/material.dart';
 
@@ -11,21 +10,37 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<dynamic> banners = [];
+  List<dynamic> collections = [];
+  @override
+  void initState() {
+    getLayoutData();
+    super.initState();
+  }
+
+  void getLayoutData() async {
+    var layoutData = await instaBuyService.getLayout();
+    setState(() {
+      banners = layoutData['data']['banners']
+          .where((banner) => banner['is_mobile'] == true)
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Center(
-          child: FlatButton(
-            color: Colors.black,
-            onPressed: () => instaBuyService.getLayout(),
-            child: Text(
-              'Press me',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: banners
+              .map(
+                (dynamic banner) => BannerCard(
+                  imageUrl: banner['image'],
+                  title: banner['title'],
+                ),
+              )
+              .toList(),
         ),
       ),
     );
