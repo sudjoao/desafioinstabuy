@@ -30,17 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: banners
-              .map(
-                (dynamic banner) => BannerCard(
-                  imageUrl: banner['image'],
-                  title: banner['title'],
-                ),
-              )
-              .toList(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
+        child: Container(
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: banners
+                .map(
+                  (dynamic banner) => BannerCard(
+                    imageUrl: banner['image'],
+                    title: banner['title'],
+                  ),
+                )
+                .toList(),
+          ),
         ),
       ),
     );

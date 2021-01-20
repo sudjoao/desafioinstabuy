@@ -1,3 +1,4 @@
+import 'package:DesafioInstabuy/screens/Collections/main.dart';
 import 'package:DesafioInstabuy/screens/Home/main.dart';
 import 'package:flutter/material.dart';
 
@@ -6,13 +7,16 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: HomeScreen(),
+      title: 'Insta Buy App',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/collections': (context) => CollectionsScreen(),
+      },
+      initialRoute: '/collections',
     );
   }
 }
