@@ -1,4 +1,3 @@
-import 'package:DesafioInstabuy/screens/Collections/main.dart';
 import 'package:DesafioInstabuy/screens/Home/main.dart';
 import 'package:DesafioInstabuy/screens/ItemInfo/main.dart';
 import 'package:flutter/material.dart';

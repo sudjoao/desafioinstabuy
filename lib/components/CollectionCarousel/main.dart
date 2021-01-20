@@ -9,7 +9,6 @@ class CollectionCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(collection['items'][0]['prices'][0]['price']);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

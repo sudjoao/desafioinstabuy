@@ -7,6 +7,9 @@ class InstaBuyService {
     var queryParams = {'subdomain': 'bigboxdelivery'};
     var url = API + 'layout' + '?' + Uri(queryParameters: queryParams).query;
     var response = await Dio().get(url);
-    return response.data;
+    if (response.statusCode == 200)
+      return response.data;
+    else
+      throw Exception('Status code diferente de 200');
   }
 }

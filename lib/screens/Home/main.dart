@@ -17,9 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   List<dynamic> banners = [];
   List<dynamic> collections = [];
   List<Widget> selectedPage = [];
+  Future<bool> isLoadingComplete;
   int selectedIndex = 0;
 
-  void getLayoutData() async {
+  Future<bool> getLayoutData() async {
     var layoutData = await instaBuyService.getLayout();
     setState(() {
       banners = layoutData['data']['banners']
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       selectedPage.add(BannersScreen(banners: banners));
       selectedPage.add(CollectionsScreen(collections: collections));
     });
+    return true;
   }
 
   void changePage(int pageNumber) {
@@ -43,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    getLayoutData();
+    isLoadingComplete = getLayoutData();
     super.initState();
   }
 
@@ -93,9 +95,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Container(
-              child: selectedPage[selectedIndex],
-              height: MediaQuery.of(context).size.height * 0.8,
+            FutureBuilder(
+              future: isLoadingComplete,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Container(
+                    child: selectedPage[selectedIndex],
+                    height: MediaQuery.of(context).size.height * 0.8,
+                  );
+                } else if (snapshot.hasError) {
+                  return Text(
+                      'Não foi possível conectar ao servidor, tente novamente mais tarde');
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
             ),
           ],
         ),
