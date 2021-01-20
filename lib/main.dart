@@ -1,5 +1,6 @@
 import 'package:DesafioInstabuy/screens/Collections/main.dart';
 import 'package:DesafioInstabuy/screens/Home/main.dart';
+import 'package:DesafioInstabuy/screens/ItemInfo/main.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Insta Buy App',
       routes: {
         '/': (context) => HomeScreen(),
+        '/iteminfo': (context) => ItemInfoScreen(),
       },
       initialRoute: '/',
     );

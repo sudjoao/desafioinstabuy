@@ -1,3 +1,4 @@
+import 'package:DesafioInstabuy/Utils/arguments.dart';
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
@@ -11,21 +12,33 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 125,
-      child: Column(
-        children: [
-          Image.network(
-            'https://assets.instabuy.com.br/ib.item.image.medium/m-' +
-                item['images'][0],
-            width: 100,
+    return Card(
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, '/iteminfo',
+              arguments: ItemInfoArguments(item));
+        },
+        child: Container(
+          width: 110,
+          color: Colors.white,
+          child: Column(
+            children: [
+              Hero(
+                tag: item['name'],
+                child: Image.network(
+                  'https://assets.instabuy.com.br/ib.item.image.medium/m-' +
+                      item['images'][0],
+                  width: 100,
+                ),
+              ),
+              Text(
+                getProductName(item['name']),
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text("R\$" + item['prices'][0]['price'].toString()),
+            ],
           ),
-          Text(
-            getProductName(item['name']),
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          Text("R\$" + item['prices'][0]['price'].toString()),
-        ],
+        ),
       ),
     );
   }

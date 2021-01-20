@@ -21,7 +21,6 @@ class CollectionCarousel extends StatelessWidget {
         Container(
           height: 175,
           child: ListView.builder(
-            shrinkWrap: true,
             padding: const EdgeInsets.all(8),
             scrollDirection: Axis.horizontal,
             itemCount: collection['items'].length,

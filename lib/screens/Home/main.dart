@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:DesafioInstabuy/screens/Banners/main.dart';
 import 'package:DesafioInstabuy/screens/Collections/main.dart';
 import 'package:DesafioInstabuy/services/InstaBuy.dart';
+import 'package:DesafioInstabuy/style.dart';
 import 'package:flutter/material.dart';
 
 var instaBuyService = InstaBuyService();
@@ -49,8 +50,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 20.0),
+      appBar: AppBar(
+        backgroundColor: kOrange,
+      ),
+      body: Container(
+        padding: EdgeInsets.only(left: 8.0, right: 8.0),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.white,
+              Color(0xFFF8DDD8),
+            ],
+          ),
+        ),
         child: Column(
           children: [
             Container(
@@ -62,15 +76,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       'Banners',
                       style: TextStyle(
                         fontWeight: getButtonWeight(selectedIndex == 0),
+                        color: kOrange,
                       ),
                     ),
                   ),
                   FlatButton(
                     onPressed: () => changePage(1),
                     child: Text(
-                      'Collections',
+                      'Produtos',
                       style: TextStyle(
                         fontWeight: getButtonWeight(selectedIndex == 1),
+                        color: kOrange,
                       ),
                     ),
                   )
@@ -79,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Container(
               child: selectedPage[selectedIndex],
-              height: MediaQuery.of(context).size.height * 0.9,
+              height: MediaQuery.of(context).size.height * 0.8,
             ),
           ],
         ),
