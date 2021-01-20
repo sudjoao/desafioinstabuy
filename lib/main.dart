@@ -14,9 +14,8 @@ class MyApp extends StatelessWidget {
       title: 'Insta Buy App',
       routes: {
         '/': (context) => HomeScreen(),
-        '/collections': (context) => CollectionsScreen(),
       },
-      initialRoute: '/collections',
+      initialRoute: '/',
     );
   }
 }
