@@ -33,9 +33,13 @@ class ItemCard extends StatelessWidget {
               ),
               Text(
                 getProductName(item['name']),
+                textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text("R\$" + item['prices'][0]['price'].toString()),
+              Text(
+                "R\$" + item['prices'][0]['price'].toString(),
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),
