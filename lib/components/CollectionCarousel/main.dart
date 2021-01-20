@@ -19,7 +19,7 @@ class CollectionCarousel extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Container(
-          height: 150,
+          height: 175,
           child: ListView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.all(8),

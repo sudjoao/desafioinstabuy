@@ -24,7 +24,7 @@ class ItemCard extends StatelessWidget {
             getProductName(item['name']),
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          Text(item['prices'][0]['price'].toString()),
+          Text("R\$" + item['prices'][0]['price'].toString()),
         ],
       ),
     );

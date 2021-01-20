@@ -1,4 +1,5 @@
-import 'package:DesafioInstabuy/components/BannerCard/main.dart';
+import 'dart:ui';
+
 import 'package:DesafioInstabuy/screens/Banners/main.dart';
 import 'package:DesafioInstabuy/screens/Collections/main.dart';
 import 'package:DesafioInstabuy/services/InstaBuy.dart';
@@ -16,11 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   List<dynamic> collections = [];
   List<Widget> selectedPage = [];
   int selectedIndex = 0;
-  @override
-  void initState() {
-    getLayoutData();
-    super.initState();
-  }
 
   void getLayoutData() async {
     var layoutData = await instaBuyService.getLayout();
@@ -40,6 +36,16 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  FontWeight getButtonWeight(bool isSelected) {
+    return isSelected ? FontWeight.bold : FontWeight.normal;
+  }
+
+  @override
+  void initState() {
+    getLayoutData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,10 +57,23 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 children: [
                   FlatButton(
-                      onPressed: () => changePage(0), child: Text('Banners')),
+                    onPressed: () => changePage(0),
+                    child: Text(
+                      'Banners',
+                      style: TextStyle(
+                        fontWeight: getButtonWeight(selectedIndex == 0),
+                      ),
+                    ),
+                  ),
                   FlatButton(
-                      onPressed: () => changePage(1),
-                      child: Text('Collections'))
+                    onPressed: () => changePage(1),
+                    child: Text(
+                      'Collections',
+                      style: TextStyle(
+                        fontWeight: getButtonWeight(selectedIndex == 1),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
